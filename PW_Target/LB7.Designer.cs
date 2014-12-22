@@ -1,6 +1,6 @@
 ﻿namespace PW_Target
 {
-    partial class Form1
+    partial class LB7
     {
         /// <summary>
         /// Required designer variable.

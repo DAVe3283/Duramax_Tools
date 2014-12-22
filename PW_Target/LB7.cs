@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace PW_Target
 {
-    public partial class Form1 : Form
+    public partial class LB7 : Form
     {
-        public Form1()
+        public LB7()
         {
             InitializeComponent();
         }
