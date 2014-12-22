@@ -16,6 +16,9 @@ namespace PW_Target
         /// </summary>
         private DataTable data;
 
+        /// <summary>
+        /// The names of the rows to display
+        /// </summary>
         private String[] rowNames = null;
 
         /// <summary>
@@ -28,19 +31,23 @@ namespace PW_Target
         /// Assumes the table is ALL ONE DATA TYPE!
         /// </summary>
         /// <param name="Table">The table to edit</param>
-        /// <param name="RowNames">The names of the rows (optional)</param>
-        public EditTable(DataTable Table, String[] RowNames = null)
+        /// <param name="RowNames">The names of the rows</param>
+        /// <param name="ColUnits">The units for the column axis labels</param>
+        /// <param name="RowUnits">The units for the row axis labels</param>
+        /// <param name="Converter">A TypeConverter to convert things to the appropriate type</param>
+        public EditTable(DataTable Table, String[] RowNames, String ColUnits, String RowUnits, ref TypeConverter Converter)
         {
             InitializeComponent();
             data = Table;
             rowNames = RowNames;
             dataGridView.DataSource = data;
             object firstCell = data.Rows[0][0];
-            converter = TypeDescriptor.GetConverter(firstCell);
+            converter = Converter;
         }
 
         private void EditTable_Load(object sender, EventArgs e)
         {
+            // Add row labels
             if ((rowNames != null) && (rowNames.Length >= dataGridView.Rows.Count))
             {
                 for (int i = 0; i < dataGridView.Rows.Count; i++)
@@ -48,6 +55,13 @@ namespace PW_Target
                     dataGridView.Rows[i].HeaderCell.Value = rowNames[i];
                 }
                 dataGridView.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+            }
+
+            // Auto-size columns & disable sorting
+            foreach (DataGridViewColumn col in dataGridView.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
 
