@@ -105,6 +105,7 @@
             this.MinimumSize = new System.Drawing.Size(153, 200);
             this.Name = "EditTable";
             this.Text = "Edit Table";
+            this.Load += new System.EventHandler(this.EditTable_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.groupBoxSetTo.ResumeLayout(false);
             this.groupBoxSetTo.PerformLayout();

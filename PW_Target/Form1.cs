@@ -25,8 +25,9 @@ namespace PW_Target
             newTable.Columns.Add("10000 RPM", typeof(Double));
             newTable.Rows.Add(1, 10, 100, 1000);
             newTable.Rows.Add(2, 20, 200, 2000);
+            String[] rowNames = { "1 MPa", "10 MPa", "100 MPa" };
             
-            EditTable editor = new EditTable(newTable);
+            EditTable editor = new EditTable(newTable, rowNames);
             editor.ShowDialog();
             editor.Dispose();
             editor = null;
