@@ -38,9 +38,13 @@
             this.buttonGenerateB1001 = new System.Windows.Forms.Button();
             this.buttonCopyB1001 = new System.Windows.Forms.Button();
             this.buttonEditB1001 = new System.Windows.Forms.Button();
+            this.groupBoxB0720 = new System.Windows.Forms.GroupBox();
+            this.buttonPasteB0720 = new System.Windows.Forms.Button();
+            this.buttonEditB0720 = new System.Windows.Forms.Button();
             this.groupBoxGenerateB1001.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinFRP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxFRP)).BeginInit();
+            this.groupBoxB0720.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxGenerateB1001
@@ -117,7 +121,7 @@
             this.numericUpDownMaxFRP.Size = new System.Drawing.Size(50, 20);
             this.numericUpDownMaxFRP.TabIndex = 4;
             this.numericUpDownMaxFRP.Value = new decimal(new int[] {
-            40,
+            180,
             0,
             0,
             0});
@@ -162,11 +166,43 @@
             this.buttonEditB1001.UseVisualStyleBackColor = true;
             this.buttonEditB1001.Click += new System.EventHandler(this.buttonEditB1001_Click);
             // 
+            // groupBoxB0720
+            // 
+            this.groupBoxB0720.Controls.Add(this.buttonEditB0720);
+            this.groupBoxB0720.Controls.Add(this.buttonPasteB0720);
+            this.groupBoxB0720.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxB0720.Name = "groupBoxB0720";
+            this.groupBoxB0720.Size = new System.Drawing.Size(168, 48);
+            this.groupBoxB0720.TabIndex = 2;
+            this.groupBoxB0720.TabStop = false;
+            this.groupBoxB0720.Text = "{B0720} Main Injection Pulse";
+            // 
+            // buttonPasteB0720
+            // 
+            this.buttonPasteB0720.Location = new System.Drawing.Point(6, 19);
+            this.buttonPasteB0720.Name = "buttonPasteB0720";
+            this.buttonPasteB0720.Size = new System.Drawing.Size(75, 23);
+            this.buttonPasteB0720.TabIndex = 0;
+            this.buttonPasteB0720.Text = "Paste";
+            this.buttonPasteB0720.UseVisualStyleBackColor = true;
+            this.buttonPasteB0720.Click += new System.EventHandler(this.buttonPasteB0720_Click);
+            // 
+            // buttonEditB0720
+            // 
+            this.buttonEditB0720.Location = new System.Drawing.Point(87, 19);
+            this.buttonEditB0720.Name = "buttonEditB0720";
+            this.buttonEditB0720.Size = new System.Drawing.Size(75, 23);
+            this.buttonEditB0720.TabIndex = 1;
+            this.buttonEditB0720.Text = "Edit";
+            this.buttonEditB0720.UseVisualStyleBackColor = true;
+            this.buttonEditB0720.Click += new System.EventHandler(this.buttonEditB0720_Click);
+            // 
             // LB7
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 406);
+            this.Controls.Add(this.groupBoxB0720);
             this.Controls.Add(this.groupBoxGenerateB1001);
             this.Name = "LB7";
             this.Text = "Form1";
@@ -174,6 +210,7 @@
             this.groupBoxGenerateB1001.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinFRP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxFRP)).EndInit();
+            this.groupBoxB0720.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -190,6 +227,9 @@
         private System.Windows.Forms.Label labelMinFRPUnits;
         private System.Windows.Forms.Label labelMinFRP;
         private System.Windows.Forms.NumericUpDown numericUpDownMinFRP;
+        private System.Windows.Forms.GroupBox groupBoxB0720;
+        private System.Windows.Forms.Button buttonEditB0720;
+        private System.Windows.Forms.Button buttonPasteB0720;
     }
 }
 

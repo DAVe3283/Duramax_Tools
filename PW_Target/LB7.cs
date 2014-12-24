@@ -71,6 +71,67 @@ namespace PW_Target
             return zero;
         }
 
+        private void buttonPasteB0720_Click(object sender, EventArgs e)
+        {
+            if (Clipboard.ContainsText())
+            {
+                // Tab separated array?
+                String rawText = Clipboard.GetText();
+                String[] rows = rawText.Split('\n');
+                if (rows.Length == B0720.Rows.Count)
+                {
+                    // Process rows
+                    for (int row = 0; row < rows.Length; row++)
+                    {
+                        // Split columns
+                        String[] cols = rows[row].Split('\t');
+                        if (cols.Length == B0720.Columns.Count)
+                        {
+                            // Store data
+                            for (int col = 0; col < cols.Length; col++)
+                            {
+                                B0720.Rows[row][col] = converter.ConvertFromString(cols[col]);
+                            }
+                        }
+                        else
+                        {
+                            // Wrong number of cols. Not {B0720}?
+                            MessageBox.Show(
+                                "Copied data doesn't have the correct number of columns. Ensure that the copied table was {B0720} from a late-LB7 OS, and copied without labels.",
+                                "Unrecognized data on clipboard",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Asterisk);
+                        }
+                    }
+                }
+                else
+                {
+                    // Wrong number of rows. Not {B0720}?
+                    MessageBox.Show(
+                        "Copied data doesn't have the correct number of rows. Ensure that the copied table was {B0720} from a late-LB7 OS, and copied without labels.",
+                        "Unrecognized data on clipboard",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Asterisk);
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Clipboard does not contain text data.",
+                    "Unrecognized data on clipboard",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonEditB0720_Click(object sender, EventArgs e)
+        {
+            using (EditTable editor = new EditTable(B0720, axis_B0720_row, axis_B0720_col_units, axis_B0720_row_units, ref converter))
+            {
+                editor.ShowDialog();
+            }
+        }
+
         private void buttonGenerateB1001_Click(object sender, EventArgs e)
         {
             // TODO: generate the resulting table
