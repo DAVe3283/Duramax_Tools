@@ -29,6 +29,15 @@ namespace PW_Target
         private static String[] axis_B1001_row = { "0", "5", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55", "60", "65", "70", "75", "80", "85", "90", "95", "100", "105", "110" };
         #endregion B1001
 
+        #region DesiredPW
+        private DataTable DesiredPW;
+        // DesiredPW uses B1001 axies
+        private const String axis_DesiredPW_col_units = axis_B1001_col_units;
+        private const String axis_DesiredPW_row_units = axis_B1001_row_units;
+        private static String[] axis_DesiredPW_col = axis_B1001_col;
+        private static String[] axis_DesiredPW_row = axis_B1001_row;
+        #endregion DesiredPW
+
         #endregion Tables
 
         /// <summary>
@@ -45,24 +54,26 @@ namespace PW_Target
         {
             InitializeComponent();
             converter = TypeDescriptor.GetConverter(cellType);
-            B0720 = GenerateZeroTable(axis_B0720_col, axis_B0720_row);
-            B1001 = GenerateZeroTable(axis_B1001_col, axis_B1001_row);
+            B0720 = GenerateTable(axis_B0720_col, axis_B0720_row);
+            B1001 = GenerateTable(axis_B1001_col, axis_B1001_row);
+            DesiredPW = GenerateTable(axis_DesiredPW_col, axis_DesiredPW_row);
         }
 
         /// <summary>
-        /// Generate a DataTable filled with 0's.
+        /// Generate a DataTable filled with the specified value (default is 0).
         /// </summary>
         /// <param name="ColLabels">The labels to use for the column axies</param>
         /// <param name="RowLabels">The labels for the rows (just used to generate the correct number of rows)</param>
+        /// <param name="Value">The value to put in every cell</param>
         /// <returns>The new DataTable</returns>
-        private DataTable GenerateZeroTable(String[] ColLabels, String[] RowLabels)
+        private DataTable GenerateTable(String[] ColLabels, String[] RowLabels, String Value = "0")
         {
             DataTable zero = new DataTable();
             List<object> zeroRow = new List<object>();
             foreach (String col in ColLabels)
             {
                 zero.Columns.Add(col, typeof(Double));
-                zeroRow.Add(converter.ConvertFrom("0"));
+                zeroRow.Add(converter.ConvertFrom(Value));
             }
             foreach (String row in RowLabels)
             {
@@ -145,7 +156,14 @@ namespace PW_Target
             {
                 editor.ShowDialog();
             }
-            MessageBox.Show("First cell = " + B1001.Rows[0][0].ToString());
+        }
+
+        private void buttonEditDesiredPW_Click(object sender, EventArgs e)
+        {
+            using (EditTable editor = new EditTable(DesiredPW, axis_DesiredPW_row, axis_DesiredPW_col_units, axis_DesiredPW_row_units, ref converter))
+            {
+                editor.ShowDialog();
+            }
         }
     }
 }
