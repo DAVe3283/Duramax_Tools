@@ -1,10 +1,8 @@
-Duramax_Tools
--------------
+# Duramax_Tools
 
 Some basic tools to help tune the Duramax engine.
 
-PW_Target
-=========
+## PW_Target
 
 This tool creates a fuel pressure table that results in a certain main injection
 duration (PulseWidth).
