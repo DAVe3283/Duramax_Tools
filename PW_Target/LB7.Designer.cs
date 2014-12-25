@@ -88,6 +88,7 @@
             this.buttonCopyB1001.TabIndex = 7;
             this.buttonCopyB1001.Text = "Copy";
             this.buttonCopyB1001.UseVisualStyleBackColor = true;
+            this.buttonCopyB1001.Click += new System.EventHandler(this.buttonCopyB1001_Click);
             // 
             // buttonGenerateB1001
             // 

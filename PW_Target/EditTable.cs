@@ -32,11 +32,6 @@ namespace PW_Target
         private String rowUnits;
 
         /// <summary>
-        /// Type converter to put things in the appropriate format
-        /// </summary>
-        private TypeConverter converter;
-
-        /// <summary>
         /// Edits a DataTable.
         /// Assumes the table is ALL ONE DATA TYPE!
         /// </summary>
@@ -44,8 +39,7 @@ namespace PW_Target
         /// <param name="RowNames">The names of the rows</param>
         /// <param name="ColUnits">The units for the column axis labels</param>
         /// <param name="RowUnits">The units for the row axis labels</param>
-        /// <param name="Converter">A TypeConverter to convert things to the appropriate type</param>
-        public EditTable(DataTable Table, String[] RowNames, String ColUnits, String RowUnits, ref TypeConverter Converter)
+        public EditTable(DataTable Table, String[] RowNames, String ColUnits, String RowUnits)
         {
             InitializeComponent();
             data = Table;
@@ -54,7 +48,6 @@ namespace PW_Target
             rowUnits = RowUnits;
             dataGridView.DataSource = data;
             object firstCell = data.Rows[0][0];
-            converter = Converter;
         }
 
         private void EditTable_Load(object sender, EventArgs e)
@@ -86,15 +79,12 @@ namespace PW_Target
 
         private void textBoxSetTo_Validating(object sender, CancelEventArgs e)
         {
-            try
-            {
-                converter.ConvertFromString(textBoxSetTo.Text);
-            }
-            catch (Exception ex)
+            Double test;
+            if (!Double.TryParse(textBoxSetTo.Text, out test))
             {
                 e.Cancel = true;
                 MessageBox.Show(
-                    "Can't convert '" + textBoxSetTo.Text + "' to the correct type:\n" + ex.Message,
+                    "Can't convert '" + textBoxSetTo.Text + "' to a number.",
                     "Parse error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -105,7 +95,7 @@ namespace PW_Target
         {
             UseWaitCursor = true;
             Enabled = false;
-            object value = converter.ConvertFromString(textBoxSetTo.Text);
+            Double value = Double.Parse(textBoxSetTo.Text);
             foreach (DataRow row in data.Rows)
             {
                 foreach (DataColumn col in data.Columns)
@@ -121,7 +111,7 @@ namespace PW_Target
         {
             UseWaitCursor = true;
             Enabled = false;
-            object value = converter.ConvertFromString(textBoxSetTo.Text);
+            Double value = Double.Parse(textBoxSetTo.Text);
             DataGridViewSelectedCellCollection selected = dataGridView.SelectedCells;
             for (int i = 0; i < selected.Count; i++)
             {
