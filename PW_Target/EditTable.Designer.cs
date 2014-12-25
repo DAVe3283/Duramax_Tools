@@ -33,6 +33,8 @@
             this.buttonSetSelection = new System.Windows.Forms.Button();
             this.buttonSetAll = new System.Windows.Forms.Button();
             this.textBoxSetTo = new System.Windows.Forms.TextBox();
+            this.labelColUnits = new System.Windows.Forms.Label();
+            this.labelRowUnits = new PW_Target.myLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.groupBoxSetTo.SuspendLayout();
             this.SuspendLayout();
@@ -45,9 +47,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Location = new System.Drawing.Point(12, 93);
+            this.dataGridView.Location = new System.Drawing.Point(13, 106);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(760, 457);
+            this.dataGridView.Size = new System.Drawing.Size(771, 456);
             this.dataGridView.TabIndex = 0;
             // 
             // groupBoxSetTo
@@ -95,11 +97,37 @@
             this.textBoxSetTo.TabIndex = 0;
             this.textBoxSetTo.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSetTo_Validating);
             // 
+            // labelColUnits
+            // 
+            this.labelColUnits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelColUnits.Location = new System.Drawing.Point(13, 90);
+            this.labelColUnits.Name = "labelColUnits";
+            this.labelColUnits.Size = new System.Drawing.Size(771, 13);
+            this.labelColUnits.TabIndex = 2;
+            this.labelColUnits.Text = "<column units>";
+            this.labelColUnits.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelRowUnits
+            // 
+            this.labelRowUnits.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelRowUnits.Location = new System.Drawing.Point(0, 106);
+            this.labelRowUnits.Name = "labelRowUnits";
+            this.labelRowUnits.NewText = null;
+            this.labelRowUnits.RotateAngle = -90;
+            this.labelRowUnits.Size = new System.Drawing.Size(13, 456);
+            this.labelRowUnits.TabIndex = 3;
+            this.labelRowUnits.Text = "<row units>";
+            this.labelRowUnits.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // EditTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.labelRowUnits);
+            this.Controls.Add(this.labelColUnits);
             this.Controls.Add(this.groupBoxSetTo);
             this.Controls.Add(this.dataGridView);
             this.MinimumSize = new System.Drawing.Size(153, 200);
@@ -120,5 +148,7 @@
         private System.Windows.Forms.TextBox textBoxSetTo;
         private System.Windows.Forms.Button buttonSetSelection;
         private System.Windows.Forms.Button buttonSetAll;
+        private System.Windows.Forms.Label labelColUnits;
+        private myLabel labelRowUnits;
     }
 }
